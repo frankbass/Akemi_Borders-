@@ -1,14 +1,12 @@
-// let blackIntro = 5; //time of each section, in minutes
-// let fadeIn = 1;
-// let lineTime = 14;
-// let fadeOut = 2;
+let blackIntro = 3; //time of each section, in minutes
+let fadeIn = 1;
+let lineTime = 14;
+let fadeOut = 2;
 
-let blackIntro = .5; //time of each section, in minutes
-let fadeIn = .5;
-let lineTime = .5;
-let fadeOut = .5;
-
-
+// let blackIntro = .5; //time of each section, in minutes
+// let fadeIn = .5;
+// let lineTime = .5;
+// let fadeOut = .5;
 
 let fillValue = 0;
 let growStart;
@@ -29,8 +27,8 @@ let fadeOutGrain;
 
 let song;
 let voice;
-let songStart = 1.1;
-let voiceStart = .5;
+let songStart = 16;
+let voiceStart = 7;
 let songEnd;
 
 function conversion() {
