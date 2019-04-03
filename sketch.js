@@ -15,7 +15,6 @@ let running = 0;
 let currentTime = 0;
 let fat = 2;
 
-
 let amount;
 let length;
 // let margin = 20; // x distance from side
@@ -26,9 +25,9 @@ let fadeInGrain; // amount of fade in/out per fraim
 let fadeOutGrain;
 
 let song;
-let voice;
-let songStart = 16;
-let voiceStart = 7;
+//let voice;
+let songStart = 7;
+//let voiceStart = 7;
 let songEnd;
 
 function conversion() {
@@ -46,14 +45,20 @@ function conversion() {
   //console.log("intro: 0" + ", fade in: " + fadeIn + ", line: " + lineTime + ", fadeOut: " + fadeOut + ", end: " + length);
 
   songStart = songStart * 60;
-  voiceStart = voiceStart * 60;
+  //voiceStart = voiceStart * 60;
 	songEnd = songStart + song.duration();
 }
 
 function preload() {
-	song = loadSound("music/Counting.mp3");
-	voice = loadSound("music/Dry Ice 6.wav");
+	song = loadSound("music/I love_hate you 2.4..mp3", console.log("yup"), console.log("nope"));
+	//voice = loadSound("music/Dry Ice 6.wav");
 }
+
+function whileLoading(total) {
+console.log('loaded: ' + total);
+}
+
+
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -63,6 +68,7 @@ function setup() {
   noStroke();
   noCursor();
   frameRate(60);
+
 
 	// song.playMode("restart");
 	// voice.playMode("restart");
@@ -99,7 +105,7 @@ function timer() {
   if (second() != startSec) {
     currentTime++;
     startSec = second();
-    console.log("Time: " + currentTime);
+    console.log("Time: " + int(currentTime/60) + ":" + nf((currentTime%60), 2,0));
   }
   if (currentTime > length) {
     running = 0;
@@ -139,10 +145,14 @@ function keyPressed() {
     if (running == 0) {
       running = 1;
       startSec = second();
+
     } else if (running == 1) {
       running = 0;
 			song.pause();
     }
+
+
+
   }
   if (key === "1") {
     currentTime = 0;
@@ -158,6 +168,10 @@ function keyPressed() {
     fillValue = 255;
   }
   if (key === "4") {
+    currentTime = songStart;
+    fillValue = 255;
+  }
+  if (key === "5") {
     currentTime = fadeOut;
     fillValue = 255;
   }
