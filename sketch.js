@@ -2,6 +2,7 @@ let blackIntro = 3; //time of each section, in minutes
 let fadeIn = 1;
 let lineTime = 14;
 let fadeOut = 2;
+let lineTimeTotal = blackIntro + fadeIn + lineTime + fadeOut;
 
 // let blackIntro = .5; //time of each section, in minutes
 // let fadeIn = .5;
@@ -24,41 +25,40 @@ let x;
 let fadeInGrain; // amount of fade in/out per fraim
 let fadeOutGrain;
 
-let song;
+let song1;
+let song2;
+let song3;
 //let voice;
-let songStart = 7;
-//let voiceStart = 7;
-let songEnd;
+let song1Start = 7;
+let song2Start = 12;
+let song3Start = 25.133333;
+// let songEnd;
+// let songDuration;
 
 function conversion() {
   blackIntro = blackIntro * 60;
   fadeIn = fadeIn * 60;
   lineTime = lineTime * 60;
   fadeOut = fadeOut * 60;
-
   fadeInGrain = 255 / (fadeIn * 60);
   fadeOutGrain = 255 / (fadeOut * 60);
-  length = blackIntro + fadeIn + lineTime + fadeOut; //total seconds
   fadeOut = blackIntro + fadeIn + lineTime;
   lineTime = blackIntro + fadeIn;
   fadeIn = blackIntro;
-  //console.log("intro: 0" + ", fade in: " + fadeIn + ", line: " + lineTime + ", fadeOut: " + fadeOut + ", end: " + length);
+  lineTimeTotal = lineTimeTotal * 60;
 
-  songStart = songStart * 60;
-  //voiceStart = voiceStart * 60;
-	songEnd = songStart + song.duration();
+  song1Start = song1Start * 60;
+  song2Start = song2Start * 60;
+  song3Start = song3Start * 60;
+  length = song3Start +song3.duration(); //total seconds
+  console.log("length " + length);
 }
 
 function preload() {
-	song = loadSound("music/I love_hate you 2.4..mp3", console.log("yup"), console.log("nope"));
-	//voice = loadSound("music/Dry Ice 6.wav");
+  song1 = loadSound("music/I love_hate you part 1.mp3");
+  song2 = loadSound("music/I love_hate you part 2.mp3");
+  song3 = loadSound("music/I love_hate you part 3.mp3");
 }
-
-function whileLoading(total) {
-console.log('loaded: ' + total);
-}
-
-
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -69,17 +69,22 @@ function setup() {
   noCursor();
   frameRate(60);
 
-
-	// song.playMode("restart");
-	// voice.playMode("restart");
+  song1.playMode("restart");
+  song2.playMode("restart");
+  song3.playMode("restart");
 }
 
 function player() {
 
-  if (currentTime > songStart && !song.isPlaying() && currentTime < songEnd) {
-    song.play();
+  if (currentTime > song1Start && !song1.isPlaying() && currentTime < song2Start) {
+    song1.play();
   }
-
+  else if (currentTime > song2Start && !song2.isPlaying() && currentTime < song3Start) {
+    song2.play();
+  }
+  else if (currentTime > song3Start && !song3.isPlaying() && currentTime < length) {
+    song3.play();
+  }
 }
 
 function reset() {
@@ -105,7 +110,8 @@ function timer() {
   if (second() != startSec) {
     currentTime++;
     startSec = second();
-    console.log("Time: " + int(currentTime/60) + ":" + nf((currentTime%60), 2,0));
+    let minSec = currentTime
+    console.log("Time: " + int(minSec / 60) + ":" + nf((minSec % 60), 2, 0));
   }
   if (currentTime > length) {
     running = 0;
@@ -115,7 +121,7 @@ function timer() {
 function lineDrawing() {
   background(0);
   fill(fillValue);
-  if (currentTime < length) {
+  if (currentTime < lineTimeTotal) {
     rect(x, 0, fat, height);
   }
 }
@@ -148,7 +154,9 @@ function keyPressed() {
 
     } else if (running == 1) {
       running = 0;
-			song.pause();
+      song1.pause();
+      song2.pause();
+      song3.pause();
     }
 
 
@@ -168,11 +176,15 @@ function keyPressed() {
     fillValue = 255;
   }
   if (key === "4") {
-    currentTime = songStart;
+    currentTime = song1Start;
     fillValue = 255;
   }
   if (key === "5") {
-    currentTime = fadeOut;
+    currentTime = song2Start;
+    fillValue = 255;
+  }
+  if (key === "6") {
+    currentTime = song3Start;
     fillValue = 255;
   }
 
