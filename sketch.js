@@ -69,20 +69,20 @@ function setup() {
   noCursor();
   frameRate(60);
 
-  song1.playMode("restart");
-  song2.playMode("restart");
-  song3.playMode("restart");
+  song1.playMode("untilDone");
+  song2.playMode("untilDone");
+  song3.playMode("untilDone");
 }
 
 function player() {
 
-  if (currentTime > song1Start && !song1.isPlaying() && currentTime < song2Start) {
+  if (currentTime > song1Start && !song1.isPlaying() && currentTime < song1Start+ 10) {
     song1.play();
   }
-  else if (currentTime > song2Start && !song2.isPlaying() && currentTime < song3Start) {
+  else if (currentTime > song2Start && !song2.isPlaying() && currentTime < song2Start + 10) {
     song2.play();
   }
-  else if (currentTime > song3Start && !song3.isPlaying() && currentTime < length) {
+  else if (currentTime > song3Start && !song3.isPlaying() && currentTime < song3Start +10) {
     song3.play();
   }
 }
