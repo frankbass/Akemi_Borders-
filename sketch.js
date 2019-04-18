@@ -1,4 +1,4 @@
-let blackIntro = 3; //time of each section, in minutes
+let blackIntro = 1; //time of each section, in minutes
 let fadeIn = 1;
 let lineTime = 14;
 let fadeOut = 2;
@@ -29,9 +29,9 @@ let song1;
 let song2;
 let song3;
 //let voice;
-let song1Start = 7;
-let song2Start = 12;
-let song3Start = 25.133333;
+let song1Start = 5;
+let song2Start = 11;
+let song3Start = 18;
 // let songEnd;
 // let songDuration;
 
