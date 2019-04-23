@@ -1,7 +1,7 @@
 let blackIntro = 1; //time of each section, in minutes
 let fadeIn = 1;
-let lineTime = 14;
-let fadeOut = 2;
+let lineTime = 18;
+let fadeOut = 1;
 let lineTimeTotal = blackIntro + fadeIn + lineTime + fadeOut;
 
 // let blackIntro = .5; //time of each section, in minutes
@@ -31,7 +31,7 @@ let song3;
 //let voice;
 let song1Start = 5;
 let song2Start = 11;
-let song3Start = 18;
+let song3Start = 19;
 // let songEnd;
 // let songDuration;
 
@@ -50,7 +50,7 @@ function conversion() {
   song1Start = song1Start * 60;
   song2Start = song2Start * 60;
   song3Start = song3Start * 60;
-  length = song3Start +song3.duration(); //total seconds
+  length = song3Start + song3.duration() + 30; //total seconds
   console.log("length " + length);
 }
 
@@ -76,13 +76,11 @@ function setup() {
 
 function player() {
 
-  if (currentTime > song1Start && !song1.isPlaying() && currentTime < song1Start+ 10) {
+  if (currentTime > song1Start && !song1.isPlaying() && currentTime < song1Start + 10) {
     song1.play();
-  }
-  else if (currentTime > song2Start && !song2.isPlaying() && currentTime < song2Start + 10) {
+  } else if (currentTime > song2Start && !song2.isPlaying() && currentTime < song2Start + 10) {
     song2.play();
-  }
-  else if (currentTime > song3Start && !song3.isPlaying() && currentTime < song3Start +10) {
+  } else if (currentTime > song3Start && !song3.isPlaying() && currentTime < song3Start + 10) {
     song3.play();
   }
 }
@@ -103,6 +101,11 @@ function draw() {
     lineDrawing();
     fader();
     player();
+  } else {
+    if (currentTime < length) {
+      fill(255);
+      ellipse(width / 2, height / 2, 100, 100);
+    }
   }
 }
 
@@ -166,26 +169,32 @@ function keyPressed() {
     currentTime = 0;
     growth = 1;
     fillValue = 0;
+    console.log("start");
   }
   if (key === "2") {
     currentTime = fadeIn;
     fillValue = 0;
+    console.log("fade in");
   }
   if (key === "3") {
-    currentTime = lineTime;
-    fillValue = 255;
-  }
-  if (key === "4") {
     currentTime = song1Start;
     fillValue = 255;
+    console.log("voice start");
   }
-  if (key === "5") {
+  if (key === "4") {
     currentTime = song2Start;
     fillValue = 255;
+    console.log("rhythm start");
   }
-  if (key === "6") {
+  if (key === "5") {
     currentTime = song3Start;
     fillValue = 255;
+    console.log("song start");
+  }
+  if (key === "6") {
+    currentTime = fadeOut;
+    fillValue = 255;
+    console.log("fade out");
   }
 
 }
