@@ -1,13 +1,8 @@
-let blackIntro = 1; //time of each section, in minutes
-let fadeIn = 1;
-let lineTime = 18;
-let fadeOut = 1;
+let blackIntro = .5; //time of each section, in minutes
+let fadeIn = .5;
+let lineTime = 6.5;
+let fadeOut = .5;
 let lineTimeTotal = blackIntro + fadeIn + lineTime + fadeOut;
-
-// let blackIntro = .5; //time of each section, in minutes
-// let fadeIn = .5;
-// let lineTime = .5;
-// let fadeOut = .5;
 
 let fillValue = 0;
 let growStart;
@@ -18,22 +13,20 @@ let fat = 2;
 
 let amount;
 let length;
-// let margin = 20; // x distance from side
-// let x = margin;
+
 let x;
 
-let fadeInGrain; // amount of fade in/out per fraim
+let fadeInGrain; // amount of fade in/out per frame
 let fadeOutGrain;
 
 let song1;
 let song2;
 let song3;
-//let voice;
-let song1Start = 5;
-let song2Start = 11;
-let song3Start = 19;
-// let songEnd;
-// let songDuration;
+
+let song1Start = 1.5;
+let song2Start = 5;
+let song3Start =6;
+
 
 function conversion() {
   blackIntro = blackIntro * 60;
@@ -131,11 +124,7 @@ function lineDrawing() {
 
 
 function keyPressed() {
-  // if (keyCode === LEFT_ARROW) {
-  //   x = 0 + margin;
-  // } else if (keyCode === RIGHT_ARROW) {
-  //   x = (width - margin - fat);
-  // }
+
 
   if (keyCode == UP_ARROW) {
     fat = fat + 2;
